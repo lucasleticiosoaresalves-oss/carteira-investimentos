@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Carteira de Investimentos{% endblock %}</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; margin: 0; background: #f4f6f8; color: #1a1a1a; }
+        header { background: #10233f; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+        header a { color: #fff; text-decoration: none; margin-left: 16px; }
+        main { max-width: 900px; margin: 32px auto; padding: 0 16px; }
+        .card { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 24px; }
+        .error { background: #fdecea; color: #b3261e; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #eee; }
+        input, button { font-size: 15px; padding: 8px 10px; border-radius: 6px; border: 1px solid #ccc; }
+        label { display: block; margin: 12px 0 4px; font-weight: 600; font-size: 14px; }
+        button { background: #10233f; color: #fff; border: none; cursor: pointer; margin-top: 16px; }
+        .totals { display: flex; gap: 24px; margin-bottom: 16px; }
+        .totals .box { background: #eef2f7; padding: 16px 24px; border-radius: 8px; }
+        .totals .box strong { display: block; font-size: 22px; }
+        .actions form { display: inline; }
+        .actions button { background: transparent; color: #10233f; border: 1px solid #10233f; padding: 4px 10px; margin: 0 4px; }
+    </style>
+</head>
+<body>
+    <header>
+        <strong>💼 Carteira de Investimentos</strong>
+        <nav>
+            {% block nav %}{% endblock %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

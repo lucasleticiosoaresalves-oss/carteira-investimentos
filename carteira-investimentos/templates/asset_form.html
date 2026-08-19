@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block nav %}
+<a href="/dashboard">Voltar</a>
+{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 480px; margin: 0 auto;">
+    <h2>{{ title }}</h2>
+    {% if let Some(msg) = error %}
+    <div class="error">{{ msg }}</div>
+    {% endif %}
+    <form method="post" action="{{ action }}">
+        <label for="name">Nome</label>
+        <input id="name" name="name" type="text" required
+            value="{% if let Some(a) = asset %}{{ a.name }}{% endif %}">
+
+        <label for="ticker">Ticker</label>
+        <input id="ticker" name="ticker" type="text" required
+            value="{% if let Some(a) = asset %}{{ a.ticker }}{% endif %}">
+
+        <label for="category">Categoria</label>
+        <input id="category" name="category" type="text" placeholder="Ex: Ação, FII, Renda Fixa"
+            value="{% if let Some(a) = asset %}{{ a.category }}{% else %}Outro{% endif %}">
+
+        <label for="quantity">Quantidade</label>
+        <input id="quantity" name="quantity" type="number" step="0.000001" min="0" required
+            value="{% if let Some(a) = asset %}{{ a.quantity }}{% endif %}">
+
+        <label for="unit_price">Preço unitário (R$)</label>
+        <input id="unit_price" name="unit_price" type="number" step="0.01" min="0" required
+            value="{% if let Some(a) = asset %}{{ a.unit_price }}{% endif %}">
+
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+{% endblock %}

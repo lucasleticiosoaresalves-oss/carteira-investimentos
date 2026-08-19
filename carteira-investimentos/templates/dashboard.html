@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block nav %}
+<a href="/assets/new">+ Novo ativo</a>
+<form method="post" action="/logout" style="display:inline">
+    <button type="submit" style="background:transparent;border:1px solid #fff;">Sair</button>
+</form>
+{% endblock %}
+
+{% block content %}
+<div class="totals">
+    <div class="box">
+        <span>Valor total da carteira</span>
+        <strong>R$ {{ total_value }}</strong>
+    </div>
+    <div class="box">
+        <span>Ativos cadastrados</span>
+        <strong>{{ asset_count }}</strong>
+    </div>
+</div>
+
+<div class="card">
+    {% if assets.is_empty() %}
+    <p>Você ainda não cadastrou nenhum ativo. <a href="/assets/new">Cadastre o primeiro</a>.</p>
+    {% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ticker</th>
+                <th>Categoria</th>
+                <th>Qtd.</th>
+                <th>Preço unit.</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asset in assets %}
+            <tr>
+                <td>{{ asset.name }}</td>
+                <td>{{ asset.ticker }}</td>
+                <td>{{ asset.category }}</td>
+                <td>{{ asset.quantity }}</td>
+                <td>R$ {{ asset.unit_price }}</td>
+                <td>R$ {{ asset.total_value }}</td>
+                <td class="actions">
+                    <a href="/assets/{{ asset.id }}/edit">Editar</a>
+                    <form method="post" action="/assets/{{ asset.id }}/delete" onsubmit="return confirm('Remover este ativo?');">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

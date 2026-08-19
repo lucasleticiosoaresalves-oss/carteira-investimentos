@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Criar conta{% endblock %}
+
+{% block nav %}
+<a href="/login">Entrar</a>
+{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 420px; margin: 0 auto;">
+    <h2>Criar conta</h2>
+    {% if let Some(msg) = error %}
+    <div class="error">{{ msg }}</div>
+    {% endif %}
+    <form method="post" action="/register">
+        <label for="name">Nome</label>
+        <input id="name" name="name" type="text" required>
+
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="password">Senha</label>
+        <input id="password" name="password" type="password" minlength="6" required>
+
+        <button type="submit">Criar conta</button>
+    </form>
+</div>
+{% endblock %}
