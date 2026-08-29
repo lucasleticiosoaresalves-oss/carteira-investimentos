@@ -40,8 +40,6 @@ pub struct Asset {
 }
 
 impl Asset {
-    /// quantidade * preço unitário — usado no dashboard e na melhoria
-    /// de "valor total da carteira".
     pub fn total_value(&self) -> Decimal {
         self.quantity * self.unit_price
     }
